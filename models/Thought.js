@@ -1,32 +1,6 @@
 const { Schema, model } = require('mongoose');
 const dayjs = require('dayjs');
 
-const thoughtSchema = new Schema({
-    thoughtText: {
-        type: String,
-        required: true,
-        minlength: 1,
-        maxlength: 280
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now,
-        // getter method used to format on query
-        get: (timestamp) => dayjs(timestamp).format('YYYY MM DD HH:mm:ss')
-    },
-    username: {
-        type: String,
-        required: true
-    },
-    reactions: [reactionSchema]
-}, {
-    toJSON: {
-        virtuals: true,
-        getters: true
-    },
-    id: false
-});
-
 const reactionSchema = new Schema({
     reactionId: {
         type: Schema.Types.ObjectId,
@@ -49,6 +23,33 @@ const reactionSchema = new Schema({
     }
 }, {
     toJSON: {
+        getters: true
+    },
+    id: false
+});
+
+const thoughtSchema = new Schema({
+    thoughtText: {
+        type: String,
+        required: true,
+        minlength: 1,
+        maxlength: 280
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now,
+        // getter method used to format on query
+        get: (timestamp) => dayjs(timestamp).format('YYYY MM DD HH:mm:ss')
+    },
+    username: {
+        type: String,
+        required: true,
+        ref: 'User'
+    },
+    reactions: [reactionSchema]
+}, {
+    toJSON: {
+        virtuals: true,
         getters: true
     },
     id: false
