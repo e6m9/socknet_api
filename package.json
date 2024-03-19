@@ -1,4 +1,30 @@
 {
+  "name": "socknet_api",
+  "description": "a social network api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/e6m9/socknet_api.git"
+  },
+  "keywords": [
+    "social",
+    "network",
+    "api",
+    "mongoose",
+    "noSQL",
+    "express"
+  ],
+  "author": "e6m9",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/e6m9/socknet_api/issues"
+  },
+  "homepage": "https://github.com/e6m9/socknet_api#readme",
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
