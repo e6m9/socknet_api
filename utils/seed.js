@@ -1,31 +1,35 @@
-const mongoose = requie('mongoose');
+const connection = require('../config/connection');
 const { User, Thought } = require('../models');
 const { users, thoughts } = require('./data');
 
-const seedDatabase = async () => {
-    // clear existing data
-    await User.deleteMany({});
-    await Thought.deleteMany({});
+connection.on('error', (err) => console.error('MongoDB connection error:', err));
 
-    // seed users
-    await User.insertMany(users);
+connection.once('open', async () => {
+    const seedDatabase = async () => {
+        // clear existing data
+        await User.deleteMany({});
+        await Thought.deleteMany({});
 
-    // seed thoughts
-    for (let thought of thoughts) {
-        const { _id: thoughtId } = await Thought.create(thought);
+        // seed users
+        await User.insertMany(users);
 
-        await User.findOneAndUpdate(
-            { username: thought.username },
-            { $push: { thoughts: thoughtId } },
-            { new: true }
-        );
-    }
+        // seed thoughts
+        for (let thought of thoughts) {
+            const { _id: thoughtId } = await Thought.create(thought);
 
-    console.log('database seeded');
-    process.exit(0);
-};
+            await User.findOneAndUpdate(
+                { username: thought.username },
+                { $push: { thoughts: thoughtId } },
+                { new: true }
+            );
+        }
 
-seedDatabase().catch((err) => {
-    console.error('failed to seed database', err);
-    process.exit(1);
+        console.log('database seeded');
+        process.exit(0);
+    };
+
+    seedDatabase().catch((err) => {
+        console.error('failed to seed database', err);
+        process.exit(1);
+    })
 });

@@ -5,9 +5,8 @@ const users = [
     },
     {
       username: 'luigi',
-      email: 'luigi@mushroom.com',
+      email: 'luigi@mushroom.com'
     },
-    // Add more users as needed
   ];
   
   const thoughts = [
@@ -31,7 +30,12 @@ const users = [
         },
       ]
     },
+    {
+      thoughtText: "aren't the turtles just the cutest",
+      username: "mario",
+    },
   ];
+
   
   module.exports = { users, thoughts };
   

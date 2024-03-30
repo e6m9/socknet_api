@@ -15,9 +15,12 @@ const {
 router.route('/').get(getThoughts).post(createThought);
 
 // api/thoughts/:thoughtId
-router.route('/:id').get(getSingleThought).put(updateThought).delete(deleteThought);
+router.route('/:thoughtId').get(getSingleThought).put(updateThought).delete(deleteThought);
 
-// api/reactions/thoughts/:thoughtId/reaction
-router.route('/thoughtId/reaction').post(createReaction).delete(deleteReaction);;
+// api/thoughts/:thoughtId/reactions
+router.route('/:thoughtId/reactions').post(createReaction);
+
+// api/thoughts/:thoughtId/reactions/:reactionId
+router.route('/:thoughtId/reactions/:reactionId').delete(deleteReaction);;
 
 module.exports = router;

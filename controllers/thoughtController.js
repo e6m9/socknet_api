@@ -1,4 +1,6 @@
 const { User, Thought } = require('../models');
+const { isValidObjectId } = require('mongoose');
+
 
 module.exports = {
     // get all thoughts
@@ -13,18 +15,23 @@ module.exports = {
 
     // get a single thought
     async getSingleThought(req, res) {
+        console.log('Request URL:', req.path);
+        console.log('requested thought id:', req.params.thoughtId);
+        if (!isValidObjectId(req.params.thoughtId)) {
+            return res.status(400).json({ message: 'Invalid ID format' });;
+        }
         try {
             const thought = await Thought.findById(req.params.thoughtId)
-                .populate('username')
                 .populate('reactions');
 
             if (!thought) {
-                return res.status(404).json({ message: 'no thought with that id' });
-            }
+                return res.status(404).json({ message: 'no thought with that id' })
+        }
 
             res.json(thought);
         } catch (err) {
-            res.status(500).json(err);
+            console.error("Error fetching thought:", err);
+        res.status(500).json({ message: "Error fetching thought", error: err.message });
         }
     },
 
@@ -97,15 +104,15 @@ module.exports = {
     // delete a reaction
     async deleteReaction(req, res) {
         try {
-            const reaction = await Thought.findByIdAndUpdate(
+            const thought = await Thought.findByIdAndUpdate(
                 req.params.thoughtId,
-                { $pull: { reactions: { reactionId: req.params.reactionId } } },
+                { $pull: { reactions: { reactionId: req.params._Id } } },
                 { new: true }
             );
-            if (!reaction) {
+            if (!thought) {
                 return res.status(404).json({ message: 'no thought with that id' });
             }
-            res.json(reaction);
+            res.json(thought);
         } catch (err) {
             res.status(400).json(err);
         }
