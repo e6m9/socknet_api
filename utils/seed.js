@@ -1,6 +1,6 @@
 const connection = require('../config/connection');
 const { User, Thought } = require('../models');
-const { users, thoughts } = require('./data'); 
+const { users, thoughts } = require('./data');
 
 connection.once('open', async () => {
     const seedDatabase = async () => {
@@ -19,13 +19,13 @@ connection.once('open', async () => {
             let preparedThought = {
                 ...thought,
                 userId: userDetail.id,
-                username: userDetail.username, 
+                username: userDetail.username,
             };
 
             if (preparedThought.reactions && preparedThought.reactions.length > 0) {
                 preparedThought.reactions = preparedThought.reactions.map(reaction => ({
                     ...reaction,
-                    userId: userMap[reaction.username].id, 
+                    userId: userMap[reaction.username].id,
                     username: userMap[reaction.username].username,
                 }));
             }

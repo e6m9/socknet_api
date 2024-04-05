@@ -15,8 +15,6 @@ module.exports = {
 
     // get a single thought
     async getSingleThought(req, res) {
-        console.log('Request URL:', req.path);
-        console.log('requested thought id:', req.params.thoughtId);
         if (!isValidObjectId(req.params.thoughtId)) {
             return res.status(400).json({ message: 'Invalid ID format' });;
         }

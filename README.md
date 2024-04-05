@@ -15,9 +15,9 @@ a social network api using mongoose
 - [Final-Thoughts](#final-thoughts)
 
 ## Usage
-open the terminal and enter 'npm start', then open thunder, or something similar, and follow the appropriate 'get', 'put', 'post', and 'delete' methods for the 'uses', 'thoughts', and 'reactions' routes to retrieve, update, create, and delete data.
+connect to mongoose by entering 'mongod' into the terminal. Then open another terminal and enter 'npm run seed' followed by 'npm start', then open thunder, or something similar, and follow the appropriate 'get', 'put', 'post', and 'delete' methods for the 'uses', 'thoughts', and 'reactions' and 'friends' routes to retrieve, update, create, and delete data.
 
-- [demonstration_video](
+- [demonstration_video](https://drive.google.com/file/d/1tr0v18KMuauOXqRnZKp_fhzXfo19YC8A/view?usp=drive_link)
 
 ## License
 MIT License
