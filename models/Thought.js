@@ -7,6 +7,7 @@ const reactionSchema = new Schema({
         required: true,
         maxlength: 280
     },
+    username: { type: String, required: true },
     userId: {
         type: Schema.Types.ObjectId,
         required: true,
@@ -38,6 +39,7 @@ const thoughtSchema = new Schema({
         // getter method used to format on query
         get: (timestamp) => dayjs(timestamp).format('YYYY MM DD HH:mm:ss')
     },
+    username: { type: String, required: true },
     userId: {
         type: Schema.Types.ObjectId,
         required: true,
