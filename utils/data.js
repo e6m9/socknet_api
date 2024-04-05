@@ -15,7 +15,7 @@ const thoughts = [
     username: 'mario',
     reactions: [
       {
-        reactionBody: 'i especially love the green ones',
+        reactionText: 'i especially love the green ones',
         username: 'luigi',
       },
     ]
@@ -25,7 +25,7 @@ const thoughts = [
     username: 'luigi',
     reactions: [
       {
-        reactionBody: 'yikes, bro',
+        reactionText: 'yikes, bro',
         username: 'mario',
       },
     ]
