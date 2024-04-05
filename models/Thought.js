@@ -2,13 +2,17 @@ const { Schema, Types, model } = require('mongoose');
 const dayjs = require('dayjs');
 
 const reactionSchema = new Schema({
+    // reactionId: {
+    //     type: Schema.Types.ObjectId,
+    //     default: () => new Types.ObjectId()
+    // },
     reactionBody: {
         type: String,
         required: true,
         maxlength: 280
     },
-    userId: {
-        type: Schema.Types.ObjectId,
+    username: {
+        type: String,
         required: true,
         ref: 'User'
     },
@@ -38,8 +42,8 @@ const thoughtSchema = new Schema({
         // getter method used to format on query
         get: (timestamp) => dayjs(timestamp).format('YYYY MM DD HH:mm:ss')
     },
-    userId: {
-        type: Schema.Types.ObjectId,
+    username: {
+        type: String,
         required: true,
         ref: 'User'
     },
